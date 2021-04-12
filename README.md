@@ -26,4 +26,27 @@
 
 ### 2. Chat flow
 
+```mermaid
+    sequenceDiagram
+
+    participant u as User
+    participant c as Chat
+    participant h as Hub
+
+    u ->> c: registers
+    c ->> h: create user channel
+```
+
 ## Deploy instructions
+
+The project was structured using containers for the chatbot application and the backing service, on this case RabbitMQ.
+Run the following command to get the project up and running:
+
+```shell
+docker-compose up -d
+```
+
+## TODO List
+
+[ ] Implement OAuth 2.0 flow
+[ ] Improve front end

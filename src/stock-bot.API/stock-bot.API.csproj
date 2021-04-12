@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>stock_bot.API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\finance-bot.Chatbot.Core\finance-bot.Chatbot.Core.csproj" />
+    <ProjectReference Include="..\finance-bot.Chatbot.Infra\finance-bot.Chatbot.Infra.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -21,6 +21,8 @@ namespace finance_bot.Chatbot.Infra
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
+            _channel.QueueDeclare("stock-results", false, false, false, null);
+
             _consumer = new EventingBasicConsumer(_channel);
 
             _consumer.Received += (obj, msg) =>
