@@ -21,7 +21,7 @@ namespace finance_bot.Chatbot.Infra
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare("stock-results", false, false, false, null);
+            _channel.QueueDeclare("stock-results", true, false, false, null);
 
             _consumer = new EventingBasicConsumer(_channel);
 
@@ -32,10 +32,12 @@ namespace finance_bot.Chatbot.Infra
                     var body = Encoding.UTF8.GetString(msg.Body.ToArray());
 
                     StockPushed(body);
+
+                    _channel.BasicAck(msg.DeliveryTag, false);
                 }
             };
 
-            _channel.BasicConsume("stock-results", true, _consumer);
+            _channel.BasicConsume("stock-results", false, _consumer);
         }
 
         public void Dispose()

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace finance_bot.Tests
 {
-    public class UnitTest1
+    public class ChatBotTests 
     {
         [Fact]
         public void Test1()

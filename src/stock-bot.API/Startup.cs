@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using finance_bot.Chatbot.Core;
 using finance_bot.Chatbot.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace stock_bot.API
 {
@@ -30,8 +23,11 @@ namespace stock_bot.API
             services.AddControllers();
             services.AddSignalR();
             services.AddTransient<IRetrieveStockCommand, RetrieveStockCommand>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IChatRepository, ChatRepository>();
             services.AddSingleton<IPushStockResult, PushStock>();
-            services.AddHostedService<StockReaderService>();
+            services.AddSingleton<ChatHub>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("default", policy =>

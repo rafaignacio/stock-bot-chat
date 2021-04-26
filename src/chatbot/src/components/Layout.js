@@ -4,9 +4,9 @@ import { Container } from 'reactstrap';
 export const Layout = (props) => {
     return (
         <div>
-        <Container>
-            {props.children}
-        </Container>
+            <Container>
+                {props.children}
+            </Container>
         </div>
     );
 };

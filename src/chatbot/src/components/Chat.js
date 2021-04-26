@@ -2,12 +2,13 @@
 import React, { useRef, useState } from 'react';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
-const connection = new HubConnectionBuilder().withUrl('http://localhost:8081/chat')
+const connection = new HubConnectionBuilder().withUrl('http://localhost:5000/chat')
   .configureLogging(LogLevel.Information)
   .build();
 
 connection.start().then(() => {
   console.log('connected');
+  connection.invoke('ListMessages');
 });
 
 connection.on('disconnected', () => {
@@ -24,14 +25,18 @@ const sendMessage = (user, msg) => {
 
 export const Chat = () => {
   const[msgs, setMessages] = useState([]);
-  connection.on('ReceiveMessage', (user, msg) => {
-    setMessages([...msgs, `${user} says ${msg}`]);
+  connection.on('ReceiveMessage', (m) => {
+    setMessages(m);
   });
+
+  connection.on('ReceiveError', (msg) => {
+    setMessages([...msgs, msg]);
+  })
   
   const userRef = useRef(null);
   const msgRef = useRef(null);
   
-  const listItems = msgs.map((v, i) => (<li key={i}>{v}</li>));
+  const listItems = msgs.map((v, i) => (<li key={i}>{v.username} <i>says</i> {v.message}</li>));
 
   return (
     <section>

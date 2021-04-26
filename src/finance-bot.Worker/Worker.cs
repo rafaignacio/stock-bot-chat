@@ -61,7 +61,7 @@ namespace finance_bot.Worker
 
                 var stock = await _stockService.GetStock(stock_name);
 
-                _logger.LogInformation($"stock retrivied: {stock}");
+                _logger.LogInformation($"stock retrieved: {stock}");
                 var props = channel.CreateBasicProperties();
 
                 props.ContentType = "text/plain";
