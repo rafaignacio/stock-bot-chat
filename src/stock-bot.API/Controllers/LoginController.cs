@@ -50,7 +50,7 @@ namespace stock_bot.API.Controllers
             }
         }
 
-        private UserTokenModel GetToken(LoginModel loginModel) {
+        public UserTokenModel GetToken(LoginModel loginModel) {
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, loginModel.ID),
                 new Claim(JwtRegisteredClaimNames.UniqueName, loginModel.Username),
