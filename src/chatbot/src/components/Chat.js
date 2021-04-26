@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
-const connection = new HubConnectionBuilder().withUrl('http://localhost:5000/chat')
+const connection = new HubConnectionBuilder().withUrl('http://localhost:8081/chat')
   .configureLogging(LogLevel.Information)
   .build();
 
