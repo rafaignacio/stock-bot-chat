@@ -52,7 +52,7 @@ namespace finance_bot.Worker
             var consumer = new AsyncEventingBasicConsumer(channel);
 
             channel.QueueDeclare("stock-income", false, false, false, null);
-            channel.QueueDeclare("stock-results", false, false, false, null);
+            channel.QueueDeclare("stock-results", true, false, false, null);
 
             consumer.Received += async (ch, msg) =>
             {
